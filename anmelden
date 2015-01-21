@@ -1,0 +1,47 @@
+---------------------------------------
+---------Benutzer Einstellungen--------
+---------------------------------------
+
+
+Benutzername = "admin"
+
+
+Passwort = "1234"
+
+
+---------------------------------------
+
+
+
+
+os.pullEvent = os.pullEventRaw
+
+--Bildschirm malen--
+term.setBackgroundColor(512)
+term.clear()
+term.setCursorPos(1,1)
+term.setBackgroundColor(colors.blue)
+write("               Anmeldung               ")
+term.setCursorPos(1,13)
+write("                                       ")
+term.setTextColor(colors.blue)
+term.setBackgroundColor(512)
+term.setCursorPos(4,4)
+write("Benutzername : ")
+term.setCursorPos(4,8)
+write("Passwort : ")
+
+--Benutzername und Passwort abfrage--
+term.setCursorPos(19,4)
+a = read()
+term.setCursorPos(15,8)
+b = read("*")
+
+if a == Benutzername and b == Passwort then
+shell.run("js_crafterOS/desktop")
+else 
+term.setCursorPos(20,11)
+term.setTextColor(colors.red)
+print("Falsch")
+os.shutdown()
+end

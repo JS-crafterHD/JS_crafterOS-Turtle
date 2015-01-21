@@ -1,0 +1,12 @@
+shell.run("clear")
+print("Starte Programm:")
+for i=1,10 do
+ write(".")
+ sleep(0.2)
+end
+print(".")
+sleep(0.5)
+print("Und zuruck zum Desktop!")
+sleep(2)
+shell.run("js_crafterOS/Desktop")
+

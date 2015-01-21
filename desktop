@@ -1,0 +1,194 @@
+function Desktop()
+ term.setBackgroundColor(512)
+ term.setTextColor(1)
+ term.clear()
+ term.setCursorPos(1,5)
+ print("---------------------------------------")
+ print("            ;")
+ print("            ;")
+ print("            ;")
+ print("            ;")
+ print("            ;")
+ print("            ;")
+ print("            ;")
+ write("            ;")
+ term.setBackgroundColor(128)
+ term.setTextColor(1)
+ term.setCursorPos(3,2)
+ write("norm Mod")
+ term.setCursorPos(17,2)
+ write("skype")
+ term.setCursorPos(30,2)
+ write("Benutzer")
+ term.setCursorPos(3,4)
+ write("tanken")
+ term.setTextColor(colors.black)
+ term.setCursorPos(3,10)
+ write(" up ")
+ term.setCursorPos(3,12)
+ write("down")
+ term.setCursorPos(3,8)
+ write("place")
+ term.setCursorPos(3,6)
+ write(" dig ")
+ term.setTextColor(colors.blue)
+ term.setCursorPos(23,6)
+ write("forward")
+ term.setCursorPos(24,12)
+ write("back ")
+ term.setCursorPos(14,9)
+ write("left")
+ term.setCursorPos(34,9)
+ write("right")
+end
+
+function Abfrage()
+ function WelcherS()
+  term.setCursorPos(20,9)
+  term.setBackgroundColor(512)
+  term.setTextColor(1)
+  write("Welcher Slot :")
+  term.setCursorPos(26,10)
+  eingabe = tonumber(io.read())
+ end
+ function WieO()
+  term.setCursorPos(20,9)
+  term.setBackgroundColor(512)
+  term.setTextColor(1)
+  write("Wie oft : ")
+  eingabe = tonumber(io.read())
+ end
+ function WoH(a)
+  term.setCursorPos(20,9)
+  term.setBackgroundColor(512)
+  term.setTextColor(1)
+  write("Wo hin : ")
+  b = io.read()
+  if b =="up" then
+   c = 1
+  elseif b =="down" then
+   c = 2
+  elseif b =="front" then
+   c = 3
+  else
+   Desktop()
+   Abfrage()
+  end
+  if a == 1 then
+   if c == 1 then
+    turtle.digUp()
+   elseif c == 2 then
+    turtle.digDown()
+   elseif c == 3 then
+    turtle.dig()
+   end
+  elseif a == 2 then
+   if c == 1 then
+    turtle.placeUp()
+   elseif c == 2 then
+    turtle.placeDown()
+   elseif c == 3 then
+    turtle.place()
+   end
+  end
+ end
+ abfrage = true
+ while abfrage == true do
+  local event,button,X,Y = os.pullEvent("mouse_click")
+   if X >=3 and X <=11 and Y ==2 and button ==1 then
+    shell.run("js_crafterOS/n_Mod")
+    break
+   end
+   if X >=17 and X <=22 and Y ==2 and button ==1 then
+    shell.run("js_crafterOS/skype")
+    break
+   end
+   if X >=30 and X <=37 and Y ==2 and button ==1 then
+    shell.run("edit js_crafterOS/anmelden")
+    Desktop()
+   end
+   if X >=3 and X <=9 and Y ==4 and button ==1 then
+    Tanken()
+   end
+   if X >=3 and X <=8 and Y ==6 and button ==1 then
+    WoH(1)
+    Desktop()
+   end
+   if X >=3 and X <=8 and Y ==8 and button ==1 then
+    WelcherS()
+    turtle.select(eingabe)
+    Desktop()
+    WoH(2)
+    Desktop()
+   end
+   if X >=3 and X <=7 and Y ==10 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.up()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+   if X >=3 and X <=7 and Y ==12 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.down()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+   if X >=23 and X <=29 and Y ==6 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.forward()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+   if X >=24 and X <=28 and Y ==12 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.back()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+   if X >=14 and X <=18 and Y ==9 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.turnLeft()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+   if X >=34 and X <=39 and Y ==9 and button ==1 then
+    WieO()
+    while eingabe > 0 do
+     turtle.turnRight()
+     eingabe = eingabe-1
+    end
+    Desktop()
+   end
+ end
+end
+
+function Tanken()
+ term.setCursorPos(20,9)
+ term.setTextColor(1)
+ term.setBackgroundColor(512)
+ write("Welcher Slot :")
+ term.setCursorPos(25,10)
+ slot = tonumber(io.read())
+ if slot > 16 then
+  Tanken()
+ end
+ turtle.select(slot)
+ turtle.refuel()
+ turtle.select(1)
+ Desktop()
+ Abfrage()
+end
+
+
+Desktop()
+Abfrage()

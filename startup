@@ -1,0 +1,28 @@
+--Lade Bildschirm--
+os.pullEvent = os.pullEventRaw
+
+function LB()
+ write(" ")
+ sleep(0.1)
+ write(" ")
+ sleep(0.1)
+ write(" ")
+ sleep(0.1)
+end
+
+term.setBackgroundColor(512) 
+term.clear()
+term.setCursorPos(1,1) 
+Bild_1 = paintutils.loadImage("js_crafterOS/logo2.img") 
+paintutils.drawImage(Bild_1,16,2)
+term.setCursorPos(1,13)
+write("                       (C) js_crafterHD")
+term.setBackgroundColor(colors.blue)
+term.setCursorPos(13,9)
+LB()
+LB()
+LB()
+LB()
+LB()
+sleep(0.7) 
+shell.run("js_crafterOS/Anmelden")
